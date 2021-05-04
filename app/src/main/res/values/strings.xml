@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Decagon Android 007</string>
+    <string name="contact_phonenumber">Contact phoneNumber</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_number">Enter Number</string>
+    <string name="enter_email_address">Enter Email Address</string>
+    <string name="save_contact">Save Contact</string>
+    <string name="contactname">contactName</string>
+    <string name="send_to">share data</string>
 </resources>
