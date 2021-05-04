@@ -17,16 +17,15 @@ import kotlinx.android.synthetic.main.activity_contacts_details.*
 class ContactsDetailsActivity : AppCompatActivity() {
 
     private lateinit var contacts: NewContactModel
-    private var number:String? = ""
+    private var number: String? = ""
 
     private val ANSWER_CALLS = 101
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contacts_details)
 
-
         val intent = intent
-       contacts = intent.getSerializableExtra("CONTACTS") as NewContactModel
+        contacts = intent.getSerializableExtra("CONTACTS") as NewContactModel
         val name = contacts.newContactName
         val phoneNumber = contacts.newContactPhoneNumber
         val email = contacts.newContactEmail
@@ -40,11 +39,10 @@ class ContactsDetailsActivity : AppCompatActivity() {
         shareContact()
 
         //
-
     }
 
-    private fun deleteContact (){
-        delete_icon.setOnClickListener{
+    private fun deleteContact() {
+        delete_icon.setOnClickListener {
             var key = contacts.newContactName
             var postReference = FirebaseDatabase.getInstance().getReference().child("contacts").child(key!!)
             postReference.removeValue()
@@ -54,18 +52,17 @@ class ContactsDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun shareContact(){
+    private fun shareContact() {
         val name = contacts.newContactName
         val phoneNumber = contacts.newContactPhoneNumber
-        share_contact.setOnClickListener{
+        share_contact.setOnClickListener {
             val shareIntent = Intent()
             shareIntent.action = Intent.ACTION_SEND
-            shareIntent.type="text/plain"
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "$name $phoneNumber");
-            startActivity(Intent.createChooser(shareIntent,getString(R.string.send_to)))
+            shareIntent.type = "text/plain"
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "$name $phoneNumber")
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.send_to)))
         }
     }
-
 
     private fun buttonClick() {
         val phoneNumber = contacts.newContactPhoneNumber
@@ -78,8 +75,6 @@ class ContactsDetailsActivity : AppCompatActivity() {
             startActivity(callIntent)
         }
     }
-
-
 
     private fun checkForPermissions(permission: String, name: String, requestCode: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -126,6 +121,4 @@ class ContactsDetailsActivity : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
-
-
 }

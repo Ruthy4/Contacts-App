@@ -4,27 +4,25 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.contact_list_recycler_view_items.view.*
-
 
 class ContactListRecyclerAdapter(private val recyclerViewModelList: ArrayList<NewContactModel>, private val onClickListener: OnItemClickListener) :
     RecyclerView.Adapter<ContactListRecyclerAdapter.ViewHolder>() {
 
-   inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view),
-        View.OnClickListener{
+    inner class ViewHolder(view: View) :
+        RecyclerView.ViewHolder(view),
+        View.OnClickListener {
         val name = itemView.contact_nameTv!!
         init {
             itemView.setOnClickListener(this)
         }
 
         override fun onClick(v: View?) {
-            val position =adapterPosition
+            val position = adapterPosition
             if (position != RecyclerView.NO_POSITION)
-            onClickListener.onItemClick(position, recyclerViewModelList)
+                onClickListener.onItemClick(position, recyclerViewModelList)
         }
-
 
 //        fun bind(user: ContactsModel,clickListener: AdapterView.OnItemClickListener)
 //        {
@@ -35,9 +33,7 @@ class ContactListRecyclerAdapter(private val recyclerViewModelList: ArrayList<Ne
 //                clickListener.onItemClicked(user)
 //            }
 //        }
-
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_list_recycler_view_items, parent, false)
@@ -57,10 +53,9 @@ class ContactListRecyclerAdapter(private val recyclerViewModelList: ArrayList<Ne
 
 //            contact_image_view.setImageResource(recyclerViewModelList[position].contactImage)
         }
-
     }
 
-        interface OnItemClickListener{
-            fun onItemClick(position: Int, recyclerViewModelList: ArrayList<NewContactModel>)
-        }
+    interface OnItemClickListener {
+        fun onItemClick(position: Int, recyclerViewModelList: ArrayList<NewContactModel>)
+    }
 }

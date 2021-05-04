@@ -3,7 +3,6 @@ package com.decagon.android.sq007
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +18,6 @@ class MainActivity : AppCompatActivity(), ContactListRecyclerAdapter.OnItemClick
     private lateinit var dbref: DatabaseReference
     private lateinit var contactRecyclerView: RecyclerView
     private lateinit var contactArrayList: ArrayList<NewContactModel>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +68,5 @@ class MainActivity : AppCompatActivity(), ContactListRecyclerAdapter.OnItemClick
             putExtra("CONTACTS", recyclerViewModelList[position])
         }
         startActivity(intent)
-
     }
 }
