@@ -16,8 +16,9 @@
 
     <ImageView
         android:id="@+id/contact_image_view"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ic_account_circle"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="45dp" />
@@ -29,8 +30,7 @@
         android:text="@string/contactname"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:textSize="20sp"
+        android:textSize="16sp"
         tools:layout_editor_absoluteX="131dp"
         tools:layout_editor_absoluteY="62dp" />
 
@@ -39,7 +39,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="#D5D4D4"/>
 
 </LinearLayout>

@@ -23,7 +23,26 @@ class MainActivity : AppCompatActivity(), ContactListRecyclerAdapter.OnItemClick
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var addContacts = findViewById<FloatingActionButton>(R.id.add_contacts_floating_action_button)
+//        contact_message_iv.setOnClickListener{
+//            val contactList:MutableList<NewContactModel> = ArrayList()
+//            val contacts =contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null)
+//
+//        while (contacts!!.moveToNext()){
+//            val name = contacts.getString(contacts.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
+//            val PhoneNumber = contacts.getString(contacts.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+//
+//            val obj = NewContactModel()
+//            obj.newContactName = name
+//            obj.newContactPhoneNumber = PhoneNumber
+//
+//            contactList.add(obj)
+//        }
+//            contactRecyclerView.adapter = ContactListRecyclerAdapter(contactArrayList, this)
+//            contacts.close()
+//        }
+
+        var addContacts =
+            findViewById<FloatingActionButton>(R.id.add_contacts_floating_action_button)
         addContacts.setOnClickListener {
             val intent = Intent(this, AddNewContactActivity::class.java)
             startActivity(intent)
@@ -42,21 +61,21 @@ class MainActivity : AppCompatActivity(), ContactListRecyclerAdapter.OnItemClick
         dbref.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
             }
-
             override fun onDataChange(snapshot: DataSnapshot) {
                 contactArrayList.clear()
 
                 Log.d("MainActivity", "this is calling")
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
-                        val contacts = userSnapshot.getValue<NewContactModel>()
+                        val contacts = userSnapshot.getValue<NewContactModel>()!!
 
-                        Log.d("CHECKERSS", "LLOO $contacts")
+//                        Log.d("CHECKERSS", "LLOO $contacts")
 
                         contactArrayList.add(contacts!!)
-                        Log.d("MainActivity", "this $contacts")
+//                        Log.d("MainActivity", "this $contacts")
                     }
-                    contactRecyclerView.adapter = ContactListRecyclerAdapter(contactArrayList, this@MainActivity)
+                    contactRecyclerView.adapter =
+                        ContactListRecyclerAdapter(contactArrayList, this@MainActivity)
                 }
             }
         })

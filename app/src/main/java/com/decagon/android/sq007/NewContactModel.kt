@@ -1,13 +1,11 @@
 package com.decagon.android.sq007
 
+import com.google.firebase.database.Exclude
 import java.io.Serializable
 
-data class NewContactModel(val newContactName: String? = " ", val newContactPhoneNumber: String? = " ", val newContactEmail: String? = " ") : Serializable
-
-// private fun saveContact (){
-//    var  name = contactName.text.toString().trim()
-//    if(name.isEmpty()){contactName.error = "Please enter a name"
-//
-//        return
-//    }
-// }
+data class NewContactModel(
+    @Exclude var id: String? = null,
+    var newContactName: String? = "",
+    var newContactPhoneNumber: String? = "",
+    val newContactEmail: String? = ""
+) : Serializable

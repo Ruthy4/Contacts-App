@@ -12,17 +12,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_add_new_contact.*
 import kotlinx.android.synthetic.main.activity_contacts_details.*
 
 class ContactsDetailsActivity : AppCompatActivity() {
 
     private lateinit var contacts: NewContactModel
-    private var number: String? = ""
 
     private val ANSWER_CALLS = 101
+    private val READ_CONTACTS = 102
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contacts_details)
+
+        editContact()
 
         val intent = intent
         contacts = intent.getSerializableExtra("CONTACTS") as NewContactModel
@@ -34,7 +37,7 @@ class ContactsDetailsActivity : AppCompatActivity() {
         idTVName.text = name
         idTVPhone.text = phoneNumber
 
-        buttonClick()
+        makeCall()
         deleteContact()
         shareContact()
 
@@ -43,11 +46,11 @@ class ContactsDetailsActivity : AppCompatActivity() {
 
     private fun deleteContact() {
         delete_icon.setOnClickListener {
-            var key = contacts.newContactName
-            var postReference = FirebaseDatabase.getInstance().getReference().child("contacts").child(key!!)
+            val key = contacts.id
+            val postReference = FirebaseDatabase.getInstance().getReference().child("contacts").child(key!!)
             postReference.removeValue()
 
-            var intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
@@ -64,16 +67,19 @@ class ContactsDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun buttonClick() {
-        val phoneNumber = contacts.newContactPhoneNumber
-//        val name = contacts.newContactName
+    private fun makeCall() {
+//        val phoneNumber = contacts.newContactPhoneNumber
         phone_callIv.setOnClickListener {
 
             checkForPermissions(android.Manifest.permission.CALL_PHONE, "make calls", ANSWER_CALLS)
-            val callIntent = Intent(Intent.ACTION_CALL)
-            callIntent.data = Uri.parse("tel: $phoneNumber")
-            startActivity(callIntent)
         }
+    }
+
+    private fun callIntent() {
+        val phoneNumber = contacts.newContactPhoneNumber
+        val callIntent = Intent(Intent.ACTION_CALL)
+        callIntent.data = Uri.parse("tel: $phoneNumber")
+        startActivity(callIntent)
     }
 
     private fun checkForPermissions(permission: String, name: String, requestCode: Int) {
@@ -82,7 +88,8 @@ class ContactsDetailsActivity : AppCompatActivity() {
                 ContextCompat.checkSelfPermission(
                     this, permission
                 ) == PackageManager.PERMISSION_GRANTED -> {
-                    Toast.makeText(applicationContext, "$name permission granted", Toast.LENGTH_SHORT).show()
+                    callIntent()
+//                    Toast.makeText(applicationContext, "$name permission granted", Toast.LENGTH_SHORT).show()
                 }
                 shouldShowRequestPermissionRationale(permission) -> showDialog(
                     permission, name, requestCode
@@ -98,7 +105,8 @@ class ContactsDetailsActivity : AppCompatActivity() {
             if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(applicationContext, "$name permission refused", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(applicationContext, "$name permission granted", Toast.LENGTH_SHORT).show()
+                callIntent()
+                Toast.makeText(applicationContext, "$name permission granted SHOULD CALL", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -108,7 +116,7 @@ class ContactsDetailsActivity : AppCompatActivity() {
     }
 
     private fun showDialog(permission: String, name: String, requestCode: Int) {
-        var builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this)
 
         builder.apply {
             setMessage("Permission to access your $name is required to use this app")
@@ -120,5 +128,22 @@ class ContactsDetailsActivity : AppCompatActivity() {
 
         val dialog: AlertDialog = builder.create()
         dialog.show()
+    }
+
+    private fun editContact() {
+
+        edit_icon.setOnClickListener {
+            val intent = Intent(this, AddNewContactActivity::class.java)
+                .apply {
+                    putExtra("ContactName", contacts.newContactName)
+                    putExtra("ContactPhoneNumber", contacts.newContactPhoneNumber)
+                    putExtra("ContactsEmail", contacts.newContactEmail)
+                    putExtra("KEY", "message")
+
+                    putExtra("ID", contacts.id)
+                }
+            Log.d("Check intent", "$intent")
+            startActivity(intent)
+        }
     }
 }

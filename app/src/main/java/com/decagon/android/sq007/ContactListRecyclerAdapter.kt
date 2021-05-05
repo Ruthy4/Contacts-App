@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.contact_list_recycler_view_items.view.*
 
-class ContactListRecyclerAdapter(private val recyclerViewModelList: ArrayList<NewContactModel>, private val onClickListener: OnItemClickListener) :
+class ContactListRecyclerAdapter(private val recyclerViewModelList: ArrayList<NewContactModel>, private val onClickListener: MainActivity) :
     RecyclerView.Adapter<ContactListRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) :
