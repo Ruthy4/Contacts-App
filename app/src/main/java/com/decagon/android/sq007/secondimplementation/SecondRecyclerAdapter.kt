@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.decagon.android.sq007.MainActivity
 import com.decagon.android.sq007.NewContactModel
 import com.decagon.android.sq007.R
 import kotlinx.android.synthetic.main.contact_list_recycler_view_items.view.*
 
-class SecondRecyclerAdapter(private val recyclerViewModelList: ArrayList<NewContactModel>, private val onClickListener: MainActivity) :
+class SecondRecyclerAdapter(private val recyclerViewModelList: ArrayList<NewContactModel>, private val onClickListener: SecondImplementationActivity) :
     RecyclerView.Adapter<SecondRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) :

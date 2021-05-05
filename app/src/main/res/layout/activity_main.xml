@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:id="@+id/main_activity">
+    tools:context=".MainActivity">
 
     <SearchView
         android:id="@+id/search_contacts_sv"
@@ -20,12 +20,12 @@
         android:id="@+id/contact_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:listitem="@layout/contact_list_recycler_view_items"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_contacts_sv" />
+        app:layout_constraintTop_toBottomOf="@id/search_contacts_sv"
+        tools:listitem="@layout/contact_list_recycler_view_items" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_contacts_floating_action_button"
@@ -35,15 +35,24 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:layout_marginBottom="56dp"
+        android:clickable="true"
+        android:focusable="true"
         android:src="@drawable/ic_add"
         app:fabCustomSize="40dp"
-        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.955"
         app:layout_constraintStart_toStartOf="parent"
-        app:tint="@color/white"
-        android:focusable="true" />
+        app:tint="@color/white" />
 
+    <Button
+        android:id="@+id/load_second_implementation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Implementation2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

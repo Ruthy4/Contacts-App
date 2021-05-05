@@ -23,7 +23,7 @@ class AddNewContactActivity : AppCompatActivity() {
         validateEmail()
         validatePhoneNumber()
 
-        Log.d("Check intent", "E enter o!")
+//        Log.d("Check intent", "E enter o!")
         database = FirebaseDatabase.getInstance().reference
 
         val key = intent.getStringExtra("KEY")

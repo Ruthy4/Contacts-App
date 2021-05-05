@@ -6,9 +6,11 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.decagon.android.sq007.secondimplementation.SecondImplementationActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), ContactListRecyclerAdapter.OnItemClickListener {
     companion object {
@@ -22,7 +24,7 @@ class MainActivity : AppCompatActivity(), ContactListRecyclerAdapter.OnItemClick
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        secondImplementation()
 //        contact_message_iv.setOnClickListener{
 //            val contactList:MutableList<NewContactModel> = ArrayList()
 //            val contacts =contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null)
@@ -87,5 +89,12 @@ class MainActivity : AppCompatActivity(), ContactListRecyclerAdapter.OnItemClick
             putExtra("CONTACTS", recyclerViewModelList[position])
         }
         startActivity(intent)
+    }
+
+    fun secondImplementation() {
+        load_second_implementation.setOnClickListener() {
+            val intent = Intent(this, SecondImplementationActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
