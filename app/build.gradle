@@ -9,7 +9,7 @@ plugins {
 apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.decagon.android.sq007"
@@ -33,6 +33,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 

@@ -1,14 +1,17 @@
-package com.decagon.android.sq007
+package com.decagon.android.sq007.secondimplementation
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.decagon.android.sq007.MainActivity
+import com.decagon.android.sq007.NewContactModel
+import com.decagon.android.sq007.R
 import kotlinx.android.synthetic.main.contact_list_recycler_view_items.view.*
 
-class ContactListRecyclerAdapter(private val recyclerViewModelList: ArrayList<NewContactModel>, private val onClickListener: MainActivity) :
-    RecyclerView.Adapter<ContactListRecyclerAdapter.ViewHolder>() {
+class SecondRecyclerAdapter(private val recyclerViewModelList: ArrayList<NewContactModel>, private val onClickListener: MainActivity) :
+    RecyclerView.Adapter<SecondRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) :
         RecyclerView.ViewHolder(view),
