@@ -18,13 +18,13 @@
         app:tint="@color/white" />
 
     <TextView
-        android:id="@+id/idTVName"
+        android:id="@+id/contact_NameTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/contact_detailIv"
         android:background="@color/purple_500"
         android:padding="8dp"
-        android:text="Name"
+        android:text="@string/name"
         android:textColor="@color/white"
         android:textSize="18sp" />
 
@@ -32,7 +32,7 @@
         android:id="@+id/contact_details_cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/idTVName"
+        android:layout_below="@id/contact_NameTV"
         android:layout_marginStart="4dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="4dp"
@@ -55,7 +55,7 @@
 
 
             <TextView
-                android:id="@+id/idTVPhone"
+                android:id="@+id/contact_Phone_numberTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"

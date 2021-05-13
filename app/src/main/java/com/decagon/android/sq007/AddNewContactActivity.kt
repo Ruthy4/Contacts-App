@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.decagon.android.sq007.Validator.emailValidate
@@ -20,18 +19,18 @@ class AddNewContactActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_contact)
 
+        // function to validate email and number
         validateEmail()
         validatePhoneNumber()
 
-//        Log.d("Check intent", "E enter o!")
+        // instantiate firebase database
         database = FirebaseDatabase.getInstance().reference
 
         val key = intent.getStringExtra("KEY")
-
-        Log.d("Check", "The key is $key")
         if (key == null) { saveContact() } else { saveEditedContact() }
     }
 
+    // function to save contact
     private fun saveContact() {
         save_contact_button.setOnClickListener {
             val contactName = idEdtName.text.toString()
@@ -45,12 +44,12 @@ class AddNewContactActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             onBackPressed()
+            finish()
         }
     }
 
+    // function to save edited contact
     private fun saveEditedContact() {
-
-        Log.d("Check", "Save Edited Contact is calling")
         val contactName = intent.getStringExtra("ContactName")
         val contactPhoneNumber = intent.getStringExtra("ContactPhoneNumber")
         val contactEmail = intent.getStringExtra("ContactsEmail")
@@ -60,6 +59,7 @@ class AddNewContactActivity : AppCompatActivity() {
         idEdtPhoneNumber.setText(contactPhoneNumber)
         idEdtEmail.setText(contactEmail)
 
+        // onclick listener to the save_contact
         save_contact_button.setOnClickListener {
             val editedName = idEdtName.text.toString().trim()
             val editedPhoneNumber = idEdtPhoneNumber.text.toString().trim()
@@ -82,12 +82,13 @@ class AddNewContactActivity : AppCompatActivity() {
 
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }
 
+    // validate email function
     private fun validateEmail() {
-
         // adds a listener to the email and validates on text changed
         idEdtEmail.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -107,6 +108,7 @@ class AddNewContactActivity : AppCompatActivity() {
         })
     }
 
+    // validate phoneNumber function
     private fun validatePhoneNumber() {
         // add a listener to the phoneNumber edit text to perform validation on text changed
         idEdtPhoneNumber.addTextChangedListener(object : TextWatcher {

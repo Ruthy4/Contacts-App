@@ -7,5 +7,6 @@ data class NewContactModel(
     @Exclude var id: String? = null,
     var newContactName: String? = "",
     var newContactPhoneNumber: String? = "",
-    val newContactEmail: String? = ""
+    val newContactEmail: String? = "",
+    val newContactImage: Int = 0
 ) : Serializable

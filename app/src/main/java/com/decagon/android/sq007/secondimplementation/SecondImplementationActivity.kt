@@ -22,26 +22,16 @@ class SecondImplementationActivity : AppCompatActivity(), SecondRecyclerAdapter.
     private lateinit var contactRecyclerView2: RecyclerView
     lateinit var contactAdapter: SecondRecyclerAdapter
     private var contactArrayList = ArrayList<NewContactModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second_implementation)
 
         contactRecyclerView2 = findViewById(R.id.recyclerView)
         checkForPermissions(android.Manifest.permission.READ_CONTACTS, "read_contacts", READ_CONTACTS)
-//        contactArrayList = ArrayList()
-
-//        contactRecyclerView2.adapter = SecondRecyclerAdapter(contactArrayList, this@SecondImplementationActivity)
-
-//        readContacts()
-
-//        load_contacts.setOnClickListener{
-//            readContacts()
-//            Log.d("Checking Contact button", "${readContacts()}")
-//
-//
-//        }
     }
 
+    // check for permission
     private fun checkForPermissions(permission: String, name: String, requestCode: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             when {
@@ -55,6 +45,7 @@ class SecondImplementationActivity : AppCompatActivity(), SecondRecyclerAdapter.
         }
     }
 
+    // result on permission request
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         fun innerCheck(name: String) {
             if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
@@ -66,12 +57,12 @@ class SecondImplementationActivity : AppCompatActivity(), SecondRecyclerAdapter.
                 Toast.makeText(applicationContext, "$name permission granted SHOULD CALL", Toast.LENGTH_SHORT).show()
             }
         }
-
         when (requestCode) {
             READ_CONTACTS -> innerCheck("read_contacts")
         }
     }
 
+    // request dialog
     private fun showDialog(permission: String, name: String, requestCode: Int) {
         val builder = AlertDialog.Builder(this)
 
@@ -82,11 +73,11 @@ class SecondImplementationActivity : AppCompatActivity(), SecondRecyclerAdapter.
                 ActivityCompat.requestPermissions(this@SecondImplementationActivity, arrayOf(permission), requestCode)
             }
         }
-
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
 
+    // intent to open the details activity on click of the recycler view
     override fun onItemClick(position: Int, recyclerViewModelList: ArrayList<NewContactModel>) {
         val intent = Intent(this, ContactsDetailsActivity::class.java).apply {
             putExtra("CONTACTS", recyclerViewModelList[position])
@@ -94,9 +85,8 @@ class SecondImplementationActivity : AppCompatActivity(), SecondRecyclerAdapter.
         startActivity(intent)
     }
 
+    // function to read phone contacts
     private fun readContacts() {
-//        checkForPermissions(android.Manifest.permission.READ_CONTACTS, "make calls", READ_CONTACTS)
-//            val contactList:MutableList<NewContactModel> = ArrayList()
         val contacts = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null)
 
         var count = 0
@@ -115,7 +105,6 @@ class SecondImplementationActivity : AppCompatActivity(), SecondRecyclerAdapter.
         contactRecyclerView2.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         contactRecyclerView2.adapter = contactAdapter
 
-//        Log.d("ContactArray", "readContacts: ${contactArrayList[0]}")
         contacts.close()
     }
 }

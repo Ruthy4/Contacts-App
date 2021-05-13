@@ -7,4 +7,8 @@
     <string name="save_contact">Save Contact</string>
     <string name="contactname">contactName</string>
     <string name="send_to">share data</string>
+    <string name="phone_contacts">Phone Contacts</string>
+    <string name="contacts">Contacts</string>
+    <string name="name">Name</string>
+    <string name="new_contact">New Contact</string>
 </resources>

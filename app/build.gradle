@@ -51,6 +51,8 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:27.1.0')
     implementation 'com.google.firebase:firebase-database-ktx:19.7.0'
     implementation 'com.google.firebase:firebase-database:19.7.0'
+    implementation 'com.karumi:dexter:6.2.2'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 
     testImplementation 'junit:junit:4.13.2'
 

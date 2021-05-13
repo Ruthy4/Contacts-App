@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="New Contact"
+            android:text="@string/new_contact"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
             android:gravity="center_horizontal"/>
 
@@ -26,19 +26,21 @@
         android:id="@+id/idEdtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/add_new_contact_edit_text"
+        android:textColorHint="@color/black"
         android:drawableStart="@drawable/ic_baseline_person_24"
         android:drawablePadding="@dimen/name_icon_drawable_padding"
         android:hint="@string/enter_name"
-        android:inputType="text" />
+        android:inputType="textCapSentences" />
 
     <EditText
         android:id="@+id/idEdtPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:textColorHint="@color/black"
+        android:layout_margin="@dimen/add_new_contact_edit_text"
         android:drawableStart="@drawable/ic_baseline_call_24"
-        android:drawablePadding="8dp"
+        android:drawablePadding="@dimen/name_icon_drawable_padding"
         android:hint="@string/enter_number"
         android:inputType="phone" />
 
@@ -47,9 +49,10 @@
         android:id="@+id/idEdtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/add_new_contact_edit_text"
         android:drawableStart="@drawable/ic_email"
-        android:drawablePadding="8dp"
+        android:drawablePadding="@dimen/name_icon_drawable_padding"
+        android:textColorHint="@color/black"
         android:hint="@string/enter_email_address"
         android:inputType="textEmailAddress" />
 
@@ -58,7 +61,7 @@
         android:id="@+id/save_contact_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/save_contact_button"
         android:text="@string/save_contact"
         android:textAllCaps="false" />
 

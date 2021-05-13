@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="name_icon_drawable_padding">8dp</dimen>
+    <dimen name="add_new_contact_edit_text">8dp</dimen>
+    <dimen name="save_contact_button">10dp</dimen>
 </resources>
